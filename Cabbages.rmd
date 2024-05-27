@@ -1,7 +1,7 @@
 ---
 title: "Cabbages"
-author: "Put your name here!"
-date: "put the date here"
+author: "Aubrey Garcia!"
+date: "05-21-24"
 output:
   html_document:
     df_print: paged
@@ -19,17 +19,30 @@ veggy <- cabbages
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->
  The cabbages data from the MASS package is loaded into a dataframe called veggy. Complete this report by answering the following two questions  
  
-### Is there a difference in average VitC between c39 and c52 cultivation methods?  
+### Is there a difference in average VitC between c39 and c52 cultivation methods? 
+$H_0$: There is no difference in the average vitamin C content of cabbages based on cultivation method.
+
+$H_A$: There is a difference in the average Vitamin C content of cabbeges based on cultivated methods
 
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
-# Results
+Vitamin C is numerical, cultivation is categorical.
 
+
+numerical-categorical
+Numerical~cat Help file so we use Numerical~cat Help file
+
+# Results
+```{r}
+boxplot(VitC~Cult,data=veggy)
+```
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 ## Descriptive Results
+
+Cultivation method C52 has more vitamin C than cultivation method C39
 
 ### Graphical Descriptive Results
 
@@ -37,13 +50,26 @@ veggy <- cabbages
 
 ### Numerical Descriptive Results
 
+```{r}
+favstats(VitC~Cult,data=veggy)
+```
+The numerical summery shows that cultivation C52 is higher, with a mean of 64.4 , than the c39 cultivation with a averages of 51.5, which goes to show that c52 would be a better option for cabbages.
+
+
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+t.test(VitC~Cult,data=veggy)
+```
+The P vaule is 0.00000003405, that the number is way below .5(p-value), so small that we will reject the null hypothesis.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+Originally the question was  whether there was a difference in average VitC between c39 and c52 cultivation methods? The null hypothesis stated that There is no difference in the average vitamin C content of cabbages based on cultivation method. While the Alternative Hypothesis stated that There is a difference in the average Vitamin C content of cabbages based on cultivated methods. After much statistical testing, the null hypothesis was untimely rejected. The numerical summary shows that cultivation C52 is higher, with a mean of 64.4 , than the c39 cultivation with a averages of 51.5, which goes to show that c52 would be a better option for cabbages. As well as, in the Welch Two Sample t-test, results showed, t = -6.3909, df = 56.376, p-value =  0.0000000345. Thus the P-value being less than .5, the null hypothesis is rejected and c52 is the best cultivation method for cabbage. 
